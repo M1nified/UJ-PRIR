@@ -27,6 +27,9 @@ private:
 	double rnd() {
 		return random() * MAX_RANDOM;
 	}
+
+	int mpi_rank, mpi_size, ppp, start_idx, end_idx;
+
 public:
 	MonteCarlo();
 	virtual ~MonteCarlo();
@@ -41,6 +44,8 @@ public:
 	}
 	void setMyMPI( MyMPI *myMPI ) {
 		this->myMPI = myMPI;
+		this->myMPI->MPI_Comm_rank(MPI_COMM_WORLD, &mpi_rank);
+		this->myMPI->MPI_Comm_size(MPI_COMM_WORLD, &mpi_size);
 	}
 	void setKBTinv( double kBTinv ) {
 		this->kBTinv = -kBTinv;

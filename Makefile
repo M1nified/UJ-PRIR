@@ -1,5 +1,5 @@
 
-PROC_COUNT = 2
+PROC_COUNT = 4
 MACHINES_FILE = machines
 
 .DEFAULT_GOAL := default
