@@ -105,6 +105,9 @@ void MonteCarlo::shareParticles()
 	myMPI->MPI_Barrier(MPI_COMM_WORLD);
 
 	ppp = particles->getNumberOfParticles() / mpi_size;
+	if(particles->getNumberOfParticles() % mpi_size != 0){
+		ppp++;
+	}
 
 	start_idx = mpi_rank * ppp;
 	end_idx = (mpi_rank + 1) * ppp;

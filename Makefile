@@ -1,5 +1,10 @@
 
-PROC_COUNT = 4
+PROC_COUNT = 3
+
+ifneq ($(PC), "")
+PROC_COUNT = $(PC)
+endif
+
 MACHINES_FILE = machines
 
 .DEFAULT_GOAL := default
