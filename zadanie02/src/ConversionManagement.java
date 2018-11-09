@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -13,7 +11,6 @@ public class ConversionManagement implements ConversionManagementInterface {
 		public int cores = 0;
 	    public ConverterInterface converter;
 	    public ConversionReceiverInterface receiver;
-	    public int resCount = 0;
 	}
 	
 	private class Result {
@@ -28,6 +25,7 @@ public class ConversionManagement implements ConversionManagementInterface {
 	
 	private class Worker extends Thread{
 		
+		@SuppressWarnings("unused")
 		private int id;
 		
 		public Worker(int id){
@@ -38,7 +36,7 @@ public class ConversionManagement implements ConversionManagementInterface {
 		public void run(){
 			ConverterInterface.DataPortionInterface data = null;
 			while(!Thread.currentThread().isInterrupted()){
-				while((data = dataPortions.pollFirst()) != null && !Thread.currentThread().isInterrupted()){	
+				while(!Thread.currentThread().isInterrupted() && (data = dataPortions.pollFirst()) != null){	
 					long converted = info.converter.convert(data);
 					results.add(new Result(data, converted));
 //					System.out.println(id + " " + data.id() + " " + converted);
@@ -52,8 +50,6 @@ public class ConversionManagement implements ConversionManagementInterface {
 //					e.printStackTrace();
 				}
 			}
-			if(data != null)
-				dataPortions.add(data);
 		}
 	}
 	
@@ -165,18 +161,12 @@ public class ConversionManagement implements ConversionManagementInterface {
 //    private WorkersRunner workersRunner;
 
     private final Object lockWorker = new Object();
-    private final Object lockSender = new Object();
-    private final Object lockWorkersRunner = new Object();
-    private final Object resCountLock = new Object();
     private final Object lockPrioritizer = new Object();
     
     final private List<Worker> workers = new ArrayList<Worker>();
     final private ConcurrentLinkedQueue<ConverterInterface.DataPortionInterface> dataPortionsIn = new ConcurrentLinkedQueue<ConverterInterface.DataPortionInterface>();
     final private ConcurrentSkipListSet<ConverterInterface.DataPortionInterface> dataPortions = new ConcurrentSkipListSet<ConverterInterface.DataPortionInterface>(new DataPortionComparator());
     final private ConcurrentLinkedQueue<Result> results = new ConcurrentLinkedQueue<Result>();
-
-    final private ConcurrentHashMap<Integer, Result> mapLeft = new ConcurrentHashMap<Integer, Result>();
-    final private ConcurrentHashMap<Integer, Result> mapRight = new ConcurrentHashMap<Integer, Result>();
 
     final private Result[] leftRes = new Result[1000];
     final private Result[] rightRes = new Result[1000];
@@ -198,6 +188,7 @@ public class ConversionManagement implements ConversionManagementInterface {
     @Override
     public void finalize() throws Throwable{
     	try{
+    		
     		while(dataPortions.size() > 0);
     		for(Worker worker : this.workers){
     			worker.join();
@@ -205,6 +196,7 @@ public class ConversionManagement implements ConversionManagementInterface {
     		for(Worker worker : this.workers){
     			worker.interrupt();
     		}
+    		
     		while(results.size() > 0);
     		for(Collector collector : collectors){
     			collector.interrupt();
@@ -212,9 +204,10 @@ public class ConversionManagement implements ConversionManagementInterface {
     		for(Collector collector : collectors){
     			collector.join();
     		}
-//    		while(info.resCount > 0);
+    		
     		this.sender.interrupt();
     		this.sender.join();
+    		
     	}catch(Exception e){
     		e.printStackTrace();
     	}finally{
