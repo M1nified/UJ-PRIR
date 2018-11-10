@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -37,10 +37,8 @@ public class ConversionManagement implements ConversionManagementInterface {
 				return true;
 			}
 			if(info.cores < workers.size()){						
-//				System.out.println("Worker/killed (" + this.getId() + "): possible kill");
 				synchronized(lockWorkerKill){
 					if(info.cores < workers.size()){
-//						System.out.println("Worker/killed (" + this.getId() + "): going for the kill");
 						Thread.currentThread().interrupt();
 						workers.remove(this);
 						return true;											
@@ -52,14 +50,11 @@ public class ConversionManagement implements ConversionManagementInterface {
 		
 		@Override
 		public void run(){
-//	    	System.out.println("Worker/run: start");
 			ConverterInterface.DataPortionInterface data = null;
 			while(!this.killed()){
 				while(!this.killed() && (data = dataPortions.pollFirst()) != null){	
-//					System.out.println("Worker/run: converting\t" + data.id() + "\t" + data.channel());
 					long converted = info.converter.convert(data);
 					results.add(new Result(data, converted));
-//					System.out.println(id + " " + data.id() + " " + converted);
 				}				
 				try {
 					synchronized(workerMonitor){
@@ -70,7 +65,6 @@ public class ConversionManagement implements ConversionManagementInterface {
 //					e.printStackTrace();
 				}
 			}
-//	    	System.out.println("Worker/run: end");
 		}
 	}
 	
@@ -80,14 +74,12 @@ public class ConversionManagement implements ConversionManagementInterface {
 		
 		@Override
 		public void run(){
-//	    	System.out.println("sender");
 			while(!Thread.currentThread().isInterrupted()){
 				trySend();					
 			}
 		}
 		
 	    private void trySend(){
-//	    	System.out.println(currentResultId);
 			if(		leftRes[currentResultId] != null
 					&& rightRes[currentResultId] != null
 			){
@@ -99,10 +91,6 @@ public class ConversionManagement implements ConversionManagementInterface {
 						left.out,
 						right.out
 						);
-//				synchronized(resCountLock){
-//					info.resCount-=2;
-//				}
-//		    	System.out.println("Sender/trySend:\t" + currentResultId);
 				info.receiver.result(result);
 				currentResultId++;
 			}
@@ -118,16 +106,10 @@ public class ConversionManagement implements ConversionManagementInterface {
 				Result result = null;
 				while((result = results.poll()) != null){
 					int id = result.in.id();
-//					System.out.println("collect " + id);
-//					synchronized(resCountLock){
-//						info.resCount++;
-//					}
 					if(result.in.channel() == ConverterInterface.Channel.LEFT_CHANNEL){
 						leftRes[id] = result;
-//						System.out.println("collected left " + id);
 					} else {
 						rightRes[id] = result;
-//						System.out.println("collected right " + id);
 					}
 				}
 			}
@@ -137,13 +119,10 @@ public class ConversionManagement implements ConversionManagementInterface {
 	private class Prioritizer extends Thread{
 		@Override
 		public void run(){
-			Thread.currentThread();
-			while(!Thread.interrupted()){
+			while(!Thread.currentThread().isInterrupted()){
 				ConverterInterface.DataPortionInterface data = null;
-				while((data = dataPortionsIn.poll()) != null){
+				while((data = dataPortionsIn.pollLast()) != null){
 					dataPortions.add(data);
-//			    	System.out.println("Prioritizer/run:\t" + data.id() + "\t" + data.channel() 
-//			    		+ "\t" + dataPortions.first().id());
 					try {
 			    		synchronized(workerMonitor){
 			    			workerMonitor.notify();     			
@@ -152,14 +131,13 @@ public class ConversionManagement implements ConversionManagementInterface {
 						e.printStackTrace();
 			    	}
 				}
-//				try {
-//					synchronized(lockPrioritizer){
-//						lockPrioritizer.wait();						
-//					}
-//				} catch (InterruptedException e) {
-//					Thread.currentThread().interrupt();
-////					e.printStackTrace();
-//				}
+				try {
+					synchronized(lockPrioritizer){
+						lockPrioritizer.wait();						
+					}
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
 			
 		}
@@ -181,14 +159,13 @@ public class ConversionManagement implements ConversionManagementInterface {
     private Sender sender;
     private Prioritizer prioritizer;
     private List<Collector> collectors = new ArrayList<Collector>(); 
-//    private WorkersRunner workersRunner;
 
     private final Object workerMonitor = new Object();
     private final Object lockPrioritizer = new Object();
     private final Object lockWorkerKill = new Object();
     
     final private List<Worker> workers = new ArrayList<Worker>();
-    final private ConcurrentLinkedQueue<ConverterInterface.DataPortionInterface> dataPortionsIn = new ConcurrentLinkedQueue<ConverterInterface.DataPortionInterface>();
+    final private ConcurrentLinkedDeque<ConverterInterface.DataPortionInterface> dataPortionsIn = new ConcurrentLinkedDeque<ConverterInterface.DataPortionInterface>();
     final private ConcurrentSkipListSet<ConverterInterface.DataPortionInterface> dataPortions = new ConcurrentSkipListSet<ConverterInterface.DataPortionInterface>(new DataPortionComparator());
     final private ConcurrentLinkedQueue<Result> results = new ConcurrentLinkedQueue<Result>();
 
@@ -198,8 +175,6 @@ public class ConversionManagement implements ConversionManagementInterface {
     public ConversionManagement(){
     	this.sender = new Sender();
     	this.sender.start();
-//    	this.workersRunner = new WorkersRunner();
-//    	this.workersRunner.start();
     	for(int i=0; i<2; i++){
     		Collector collector = new Collector();
     		this.collectors.add(collector);
@@ -240,7 +215,6 @@ public class ConversionManagement implements ConversionManagementInterface {
     }
     
     public void setCores(int cores){
-//    	System.out.println(cores);
     	this.info.cores = cores;
 		while(workers.size() < cores){
 			Worker w = new Worker(workers.size());
@@ -258,11 +232,20 @@ public class ConversionManagement implements ConversionManagementInterface {
     }
 
     public void addDataPortion(ConverterInterface.DataPortionInterface data){
-//    	System.out.println("addDataPortion: " + data.id() + "\t" + data.channel());
-    	this.dataPortionsIn.add(data);
-    	synchronized(lockPrioritizer){
-    		lockPrioritizer.notify();     			
+    	
+    	dataPortions.add(data);
+		try {
+    		synchronized(workerMonitor){
+    			workerMonitor.notify();     			
+    		}
+    	} catch (Exception e) {
+			e.printStackTrace();
     	}
+    	
+//    	this.dataPortionsIn.add(data);
+//    	synchronized(lockPrioritizer){
+//    		lockPrioritizer.notify();     			
+//    	}
     }
     
 }
