@@ -142,7 +142,7 @@ public class ConversionManagement implements ConversionManagementInterface {
 		}
 	}
 	
-	public class DataPortionComparator implements Comparator<ConverterInterface.DataPortionInterface> {
+	private class DataPortionComparator implements Comparator<ConverterInterface.DataPortionInterface> {
 		  
 	    @Override
 	    public int compare(ConverterInterface.DataPortionInterface first, ConverterInterface.DataPortionInterface second) {
@@ -191,10 +191,10 @@ public class ConversionManagement implements ConversionManagementInterface {
     		
     		while(dataPortions.size() > 0);
     		for(Worker worker : this.workers){
-    			worker.join();
+    			worker.interrupt();
     		}
     		for(Worker worker : this.workers){
-    			worker.interrupt();
+    			worker.join();
     		}
     		
     		while(results.size() > 0);
