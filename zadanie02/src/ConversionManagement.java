@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentSkipListSet;
 
@@ -116,33 +115,6 @@ public class ConversionManagement implements ConversionManagementInterface {
 		}
 	}
 	
-	private class Prioritizer extends Thread{
-		@Override
-		public void run(){
-			while(!Thread.currentThread().isInterrupted()){
-				ConverterInterface.DataPortionInterface data = null;
-				while((data = dataPortionsIn.pollLast()) != null){
-					dataPortions.add(data);
-					try {
-			    		synchronized(workerMonitor){
-			    			workerMonitor.notify();     			
-			    		}
-			    	} catch (Exception e) {
-						e.printStackTrace();
-			    	}
-				}
-				try {
-					synchronized(lockPrioritizer){
-						lockPrioritizer.wait();						
-					}
-				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();
-				}
-			}
-			
-		}
-	}
-	
 	private class DataPortionComparator implements Comparator<ConverterInterface.DataPortionInterface> {
 		  
 	    @Override
@@ -157,15 +129,12 @@ public class ConversionManagement implements ConversionManagementInterface {
 	
 	final private Info info = new Info();
     private Sender sender;
-    private Prioritizer prioritizer;
     private List<Collector> collectors = new ArrayList<Collector>(); 
 
     private final Object workerMonitor = new Object();
-    private final Object lockPrioritizer = new Object();
     private final Object lockWorkerKill = new Object();
     
     final private List<Worker> workers = new ArrayList<Worker>();
-    final private ConcurrentLinkedDeque<ConverterInterface.DataPortionInterface> dataPortionsIn = new ConcurrentLinkedDeque<ConverterInterface.DataPortionInterface>();
     final private ConcurrentSkipListSet<ConverterInterface.DataPortionInterface> dataPortions = new ConcurrentSkipListSet<ConverterInterface.DataPortionInterface>(new DataPortionComparator());
     final private ConcurrentLinkedQueue<Result> results = new ConcurrentLinkedQueue<Result>();
 
@@ -180,8 +149,6 @@ public class ConversionManagement implements ConversionManagementInterface {
     		this.collectors.add(collector);
     		collector.start();    		
     	}
-    	this.prioritizer = new Prioritizer();
-    	this.prioritizer.start();
     }
     
     @Override
@@ -232,7 +199,6 @@ public class ConversionManagement implements ConversionManagementInterface {
     }
 
     public void addDataPortion(ConverterInterface.DataPortionInterface data){
-    	
     	dataPortions.add(data);
 		try {
     		synchronized(workerMonitor){
@@ -241,11 +207,6 @@ public class ConversionManagement implements ConversionManagementInterface {
     	} catch (Exception e) {
 			e.printStackTrace();
     	}
-    	
-//    	this.dataPortionsIn.add(data);
-//    	synchronized(lockPrioritizer){
-//    		lockPrioritizer.notify();     			
-//    	}
     }
     
 }
