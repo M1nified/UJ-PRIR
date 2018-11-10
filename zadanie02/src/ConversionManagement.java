@@ -32,24 +32,45 @@ public class ConversionManagement implements ConversionManagementInterface {
 			this.id = id;
 		}
 		
+		public boolean killed(){
+			if(Thread.currentThread().isInterrupted()){
+				return true;
+			}
+			if(info.cores < workers.size()){						
+//				System.out.println("Worker/killed (" + this.getId() + "): possible kill");
+				synchronized(lockWorkerKill){
+					if(info.cores < workers.size()){
+//						System.out.println("Worker/killed (" + this.getId() + "): going for the kill");
+						Thread.currentThread().interrupt();
+						workers.remove(this);
+						return true;											
+					}
+				}
+			}
+			return false;
+		}
+		
 		@Override
 		public void run(){
+//	    	System.out.println("Worker/run: start");
 			ConverterInterface.DataPortionInterface data = null;
-			while(!Thread.currentThread().isInterrupted()){
-				while(!Thread.currentThread().isInterrupted() && (data = dataPortions.pollFirst()) != null){	
+			while(!this.killed()){
+				while(!this.killed() && (data = dataPortions.pollFirst()) != null){	
+//					System.out.println("Worker/run: converting\t" + data.id() + "\t" + data.channel());
 					long converted = info.converter.convert(data);
 					results.add(new Result(data, converted));
 //					System.out.println(id + " " + data.id() + " " + converted);
 				}				
 				try {
-					synchronized(lockWorker){
-						lockWorker.wait();						
+					synchronized(workerMonitor){
+						workerMonitor.wait();						
 					}
 				} catch (InterruptedException e) {
 					Thread.currentThread().interrupt();
 //					e.printStackTrace();
 				}
 			}
+//	    	System.out.println("Worker/run: end");
 		}
 	}
 	
@@ -81,7 +102,7 @@ public class ConversionManagement implements ConversionManagementInterface {
 //				synchronized(resCountLock){
 //					info.resCount-=2;
 //				}
-//		    	System.out.println("sent " + currentResultId);
+//		    	System.out.println("Sender/trySend:\t" + currentResultId);
 				info.receiver.result(result);
 				currentResultId++;
 			}
@@ -121,22 +142,24 @@ public class ConversionManagement implements ConversionManagementInterface {
 				ConverterInterface.DataPortionInterface data = null;
 				while((data = dataPortionsIn.poll()) != null){
 					dataPortions.add(data);
+//			    	System.out.println("Prioritizer/run:\t" + data.id() + "\t" + data.channel() 
+//			    		+ "\t" + dataPortions.first().id());
 					try {
-			    		synchronized(lockWorker){
-			    			lockWorker.notify();     			
+			    		synchronized(workerMonitor){
+			    			workerMonitor.notify();     			
 			    		}
 			    	} catch (Exception e) {
 						e.printStackTrace();
 			    	}
 				}
-				try {
-					synchronized(lockPrioritizer){
-						lockPrioritizer.wait();						
-					}
-				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();
-//					e.printStackTrace();
-				}
+//				try {
+//					synchronized(lockPrioritizer){
+//						lockPrioritizer.wait();						
+//					}
+//				} catch (InterruptedException e) {
+//					Thread.currentThread().interrupt();
+////					e.printStackTrace();
+//				}
 			}
 			
 		}
@@ -160,8 +183,9 @@ public class ConversionManagement implements ConversionManagementInterface {
     private List<Collector> collectors = new ArrayList<Collector>(); 
 //    private WorkersRunner workersRunner;
 
-    private final Object lockWorker = new Object();
+    private final Object workerMonitor = new Object();
     private final Object lockPrioritizer = new Object();
+    private final Object lockWorkerKill = new Object();
     
     final private List<Worker> workers = new ArrayList<Worker>();
     final private ConcurrentLinkedQueue<ConverterInterface.DataPortionInterface> dataPortionsIn = new ConcurrentLinkedQueue<ConverterInterface.DataPortionInterface>();
@@ -216,29 +240,13 @@ public class ConversionManagement implements ConversionManagementInterface {
     }
     
     public void setCores(int cores){
-    	if(cores > this.info.cores){
-    		while(workers.size() < cores){
-    			Worker w = new Worker(workers.size());
-    			w.start();
-    			workers.add(w);
-    		}
-    	} else {
-    		List<Worker> removed = new LinkedList<Worker>();
-    		while(workers.size() > cores){
-    			Worker w = workers.remove(workers.size() - 1);
-    			w.interrupt();
-    			removed.add(w);
-    		}
-			for(Worker worker : removed){
-				try {
-					worker.join();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-    	}
-        this.info.cores = cores;
+//    	System.out.println(cores);
+    	this.info.cores = cores;
+		while(workers.size() < cores){
+			Worker w = new Worker(workers.size());
+			w.start();
+			workers.add(w);
+		}
     }
 
     public void setConverter(ConverterInterface converter){
@@ -250,13 +258,10 @@ public class ConversionManagement implements ConversionManagementInterface {
     }
 
     public void addDataPortion(ConverterInterface.DataPortionInterface data){
+//    	System.out.println("addDataPortion: " + data.id() + "\t" + data.channel());
     	this.dataPortionsIn.add(data);
-    	try {
-    		synchronized(lockPrioritizer){
-    			lockPrioritizer.notify();     			
-    		}
-    	} catch (Exception e) {
-			e.printStackTrace();
+    	synchronized(lockPrioritizer){
+    		lockPrioritizer.notify();     			
     	}
     }
     

@@ -1,6 +1,9 @@
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PMO_UncaughtException implements Thread.UncaughtExceptionHandler, PMO_LogSource {
 
