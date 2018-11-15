@@ -1,0 +1,1148 @@
+Architektura:            x86_64
+Tryb(y) pracy CPU:       32-bit, 64-bit
+Kolejność bajtów:        Little Endian
+CPU:                     2
+Lista aktywnych CPU:     0,1
+Wątków na rdzeń:         1
+Rdzeni na gniazdo:       2
+Gniazd:                  1
+Węzłów NUMA:             1
+ID producenta:           GenuineIntel
+Rodzina CPU:             6
+Model:                   60
+Nazwa modelu:            Intel(R) Core(TM) i7-4770 CPU @ 3.40GHz
+Wersja:                  3
+CPU MHz:                 3392.144
+BogoMIPS:                6784.28
+Producent hipernadzorcy: KVM
+Typ wirtualizacji:       pełna
+Cache L1d:               32K
+Cache L1i:               32K
+Cache L2:                256K
+Cache L3:                8192K
+Procesory węzła NUMA 0:  0,1
+Flagi:                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm invpcid_single pti fsgsbase avx2 invpcid
+
+
+RUNNING ON 1 CORES
+mpirun -np 1 ./exec
+--------------------------------------------------------------------------
+[[52241,1],0]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 4.61143e+09
+Etot get  = -10607.5
+Etot calc = -10607.5
+Srednia odleglosc do najblizszego sasiada: 0.884732
+Obliczenie wykonano w czasie: 53.0942 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+-----------------------
+
+
+RUNNING ON 2 CORES
+mpirun -np 2 ./exec
+--------------------------------------------------------------------------
+[[52712,1],1]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 2.76475e+08
+Etot get  = -10608.6
+Etot calc = -10608.6
+Srednia odleglosc do najblizszego sasiada: 0.890689
+Obliczenie wykonano w czasie: 28.794 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 3 CORES
+mpirun -np 3 ./exec
+--------------------------------------------------------------------------
+[[52691,1],1]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 2.8853e+10
+Etot get  = -10601.7
+Etot calc = -10601.7
+Srednia odleglosc do najblizszego sasiada: 0.884593
+Obliczenie wykonano w czasie: 44.8937 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 4 CORES
+mpirun -np 4 ./exec
+--------------------------------------------------------------------------
+[[52655,1],1]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 2.16684e+09
+Etot get  = -10614.2
+Etot calc = -10614.2
+Srednia odleglosc do najblizszego sasiada: 0.893499
+Obliczenie wykonano w czasie: 37.6945 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 5 CORES
+mpirun -np 5 ./exec
+--------------------------------------------------------------------------
+[[52613,1],0]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 5.52282e+10
+Etot get  = -10640.8
+Etot calc = -10640.8
+Srednia odleglosc do najblizszego sasiada: 0.88985
+Obliczenie wykonano w czasie: 50.1252 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 6 CORES
+mpirun -np 6 ./exec
+--------------------------------------------------------------------------
+[[52564,1],0]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 8.34221e+10
+Etot get  = -10596.1
+Etot calc = -10596.1
+Srednia odleglosc do najblizszego sasiada: 0.897067
+Obliczenie wykonano w czasie: 44.9068 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 7 CORES
+mpirun -np 7 ./exec
+--------------------------------------------------------------------------
+[[52517,1],0]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 5.40879e+08
+Etot get  = -10616
+Etot calc = -10616
+Srednia odleglosc do najblizszego sasiada: 0.869493
+Obliczenie wykonano w czasie: 57.4784 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 8 CORES
+mpirun -np 8 ./exec
+--------------------------------------------------------------------------
+[[51949,1],1]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 3.11151e+09
+Etot get  = -10664.2
+Etot calc = -10664.2
+Srednia odleglosc do najblizszego sasiada: 0.894689
+Obliczenie wykonano w czasie: 69.2906 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 9 CORES
+mpirun -np 9 ./exec
+--------------------------------------------------------------------------
+[[51873,1],1]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 2.22957e+15
+Etot get  = -10642.8
+Etot calc = -10641.1
+Srednia odleglosc do najblizszego sasiada: 0.884458
+Obliczenie wykonano w czasie: 79.7867 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 8
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 10 CORES
+mpirun -np 10 ./exec
+--------------------------------------------------------------------------
+[[51800,1],2]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 1.62252e+13
+Etot get  = -10614.1
+Etot calc = -10614
+Srednia odleglosc do najblizszego sasiada: 0.874035
+Obliczenie wykonano w czasie: 88.5573 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 8
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 9
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 11 CORES
+mpirun -np 11 ./exec
+--------------------------------------------------------------------------
+[[51721,1],0]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 1.16901e+11
+Etot get  = -10644.4
+Etot calc = -10644.4
+Srednia odleglosc do najblizszego sasiada: 0.896101
+Obliczenie wykonano w czasie: 99.9197 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 8
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 9
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 10
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 12 CORES
+mpirun -np 12 ./exec
+--------------------------------------------------------------------------
+[[52146,1],3]: A high-performance Open MPI point-to-point messaging module
+was unable to find any relevant network interfaces:
+
+Module: OpenFabrics (openib)
+  Host: spk-ssh
+
+Another transport will be used instead, although this may result in
+lower performance.
+
+NOTE: You can disable this warning by setting the MCA parameter
+btl_base_warn_component_unused to 0.
+--------------------------------------------------------------------------
+Etot          = 8.18298e+10
+Etot get  = -10590.2
+Etot calc = -10590.2
+Srednia odleglosc do najblizszego sasiada: 0.892656
+Obliczenie wykonano w czasie: 105.228 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 8
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 9
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 10
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 11
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+

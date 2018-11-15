@@ -1,9 +1,6 @@
 
-PROC_COUNT = 3
-
-ifneq ($(PC), "")
+PC = 2
 PROC_COUNT = $(PC)
-endif
 
 MACHINES_FILE = machines
 
