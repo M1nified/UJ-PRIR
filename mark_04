@@ -1,0 +1,988 @@
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                4
+On-line CPU(s) list:   0-3
+Thread(s) per core:    1
+Core(s) per socket:    4
+Socket(s):             1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 58
+Model name:            Intel(R) Core(TM) i5-3570K CPU @ 3.40GHz
+Stepping:              9
+CPU MHz:               3401.000
+CPU max MHz:           3401.0000
+BogoMIPS:              6802.00
+Virtualization:        VT-x
+Hypervisor vendor:     vertical
+Virtualization type:   full
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 popcnt tsc_deadline_timer aes xsave osxsave avx f16c rdrand
+
+
+RUNNING ON 1 CORES
+mpirun -np 1 ./exec
+Etot          = 5.18356e+11
+Etot get  = -10608.6
+Etot calc = -10608.5
+Srednia odleglosc do najblizszego sasiada: 0.886286
+Obliczenie wykonano w czasie: 65.8592 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+-----------------------
+
+
+RUNNING ON 2 CORES
+mpirun -np 2 ./exec
+Etot          = 4.07265e+09
+Etot get  = -10644.1
+Etot calc = -10644.1
+Srednia odleglosc do najblizszego sasiada: 0.897495
+Obliczenie wykonano w czasie: 36.0014 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 3 CORES
+mpirun -np 3 ./exec
+Etot          = 1.94143e+10
+Etot get  = -10652.9
+Etot calc = -10652.9
+Srednia odleglosc do najblizszego sasiada: 0.894729
+Obliczenie wykonano w czasie: 27.1151 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 4 CORES
+mpirun -np 4 ./exec
+Etot          = 1.57244e+10
+Etot get  = -10625.5
+Etot calc = -10625.5
+Srednia odleglosc do najblizszego sasiada: 0.88124
+Obliczenie wykonano w czasie: 38.4911 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 5 CORES
+mpirun -np 5 ./exec
+Etot          = 7.38005e+12
+Etot get  = -10569.6
+Etot calc = -10569.6
+Srednia odleglosc do najblizszego sasiada: 0.885627
+Obliczenie wykonano w czasie: 40.8727 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 6 CORES
+mpirun -np 6 ./exec
+Etot          = 9.41052e+11
+Etot get  = -10667.8
+Etot calc = -10667.8
+Srednia odleglosc do najblizszego sasiada: 0.880722
+Obliczenie wykonano w czasie: 36.7561 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 7 CORES
+mpirun -np 7 ./exec
+Etot          = 7.39155e+10
+Etot get  = -10600.5
+Etot calc = -10600.5
+Srednia odleglosc do najblizszego sasiada: 0.883021
+Obliczenie wykonano w czasie: 40.6793 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 8 CORES
+mpirun -np 8 ./exec
+Etot          = 9.77327e+11
+Etot get  = -10614.6
+Etot calc = -10614.6
+Srednia odleglosc do najblizszego sasiada: 0.892234
+Obliczenie wykonano w czasie: 60.8399 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 9 CORES
+mpirun -np 9 ./exec
+Etot          = 1.68079e+13
+Etot get  = -10598.7
+Etot calc = -10598.7
+Srednia odleglosc do najblizszego sasiada: 0.893833
+Obliczenie wykonano w czasie: 57.3814 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 8
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 10 CORES
+mpirun -np 10 ./exec
+Etot          = 8.30001e+11
+Etot get  = -10679.7
+Etot calc = -10679.7
+Srednia odleglosc do najblizszego sasiada: 0.898539
+Obliczenie wykonano w czasie: 53.6607 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 8
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 9
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 11 CORES
+mpirun -np 11 ./exec
+Etot          = 7.49303e+11
+Etot get  = -10624
+Etot calc = -10624
+Srednia odleglosc do najblizszego sasiada: 0.875865
+Obliczenie wykonano w czasie: 55.1632 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 8
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 9
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 10
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
+RUNNING ON 12 CORES
+mpirun -np 12 ./exec
+Etot          = 2.71646e+10
+Etot get  = -10589
+Etot calc = -10589
+Srednia odleglosc do najblizszego sasiada: 0.895463
+Obliczenie wykonano w czasie: 64.5808 sekund------- process 0
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 27910004B, executed 4500005 avg: 6
+Broadcast Recv. 0B, executed 0 avg: 0
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 6000000B, executed 750000 avg: 8
+------- process 1
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 2
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 3
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 4
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 5
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 6
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 7
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 8
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 9
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 10
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+------- process 11
+Simple Send.... 0B, executed 0 avg: 0
+Simple Recv.... 0B, executed 0 avg: 0
+Broadcast Send. 0B, executed 0 avg: 0
+Broadcast Recv. 27910004B, executed 4500005 avg: 6
+Scatter Send... 0B, executed 0 avg: 0
+Scatter Recv... 0B, executed 0 avg: 0
+Gather Send.... 0B, executed 0 avg: 0
+Gather Recv.... 0B, executed 0 avg: 0
+Reduce Send.... 6000000B, executed 750000 avg: 8
+Reduce Recv.... 0B, executed 0 avg: 0
+-----------------------
+
+
