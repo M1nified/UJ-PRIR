@@ -30,6 +30,7 @@ public class ConversionManagement implements ConversionManagementInterface {
 		public Worker(){
 		}
 
+		@SuppressWarnings("unused")
 		public Worker(int id){
 			this.id = id;
 		}
@@ -57,6 +58,9 @@ public class ConversionManagement implements ConversionManagementInterface {
 				while(!this.killed() && (data = dataPortions.pollFirst()) != null){	
 					long converted = info.converter.convert(data);
 					results.add(new Result(data, converted));
+					synchronized (collectorMonitor) {
+						collectorMonitor.notify();											
+					}
 				}				
 				try {
 					synchronized(workerMonitor){
@@ -77,11 +81,20 @@ public class ConversionManagement implements ConversionManagementInterface {
 		@Override
 		public void run(){
 			while(!Thread.currentThread().isInterrupted()){
-				trySend();					
+				while(trySend());
+				try {
+					synchronized (senderMonitor) {
+						senderMonitor.wait();						
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					Thread.currentThread().interrupt();
+					e.printStackTrace();
+				}
 			}
 		}
 		
-	    private void trySend(){
+	    private boolean trySend(){
 			if(		leftRes[currentResultId] != null
 					&& rightRes[currentResultId] != null
 			){
@@ -95,7 +108,9 @@ public class ConversionManagement implements ConversionManagementInterface {
 						);
 				info.receiver.result(result);
 				currentResultId++;
+				return true;
 			}
+			return false;
 	    }
 	    
 	}
@@ -103,8 +118,7 @@ public class ConversionManagement implements ConversionManagementInterface {
 	private class Collector extends Thread{
 		@Override
 		public void run(){
-			Thread.currentThread();
-			while(!Thread.interrupted()){
+			while(!Thread.currentThread().isInterrupted()){
 				Result result = null;
 				while((result = results.poll()) != null){
 					int id = result.in.id();
@@ -113,13 +127,24 @@ public class ConversionManagement implements ConversionManagementInterface {
 					} else {
 						rightRes[id] = result;
 					}
+					synchronized (senderMonitor) {
+						senderMonitor.notify();						
+					}
+				}
+				try {
+					synchronized (collectorMonitor) {
+						collectorMonitor.wait();						
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					Thread.currentThread().interrupt();
+					e.printStackTrace();
 				}
 			}
 		}
 	}
 	
 	private class DataPortionComparator implements Comparator<ConverterInterface.DataPortionInterface> {
-		  
 	    @Override
 	    public int compare(ConverterInterface.DataPortionInterface first, ConverterInterface.DataPortionInterface second) {
 	    	int diff = first.id() - second.id();
@@ -136,6 +161,8 @@ public class ConversionManagement implements ConversionManagementInterface {
 
     private final Object workerMonitor = new Object();
     private final Object lockWorkerKill = new Object();
+    private final Object collectorMonitor = new Object();
+    private final Object senderMonitor = new Object();
     
     final private List<Worker> workers = new ArrayList<Worker>();
     final private ConcurrentSkipListSet<ConverterInterface.DataPortionInterface> dataPortions = new ConcurrentSkipListSet<ConverterInterface.DataPortionInterface>(new DataPortionComparator());
