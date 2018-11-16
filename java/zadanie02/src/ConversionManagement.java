@@ -207,7 +207,7 @@ public class ConversionManagement implements ConversionManagementInterface {
     	}catch(Exception e){
     		e.printStackTrace();
     	}finally{
-    		super.finalize();
+//    		super.finalize();
     	}
     }
     
@@ -215,6 +215,7 @@ public class ConversionManagement implements ConversionManagementInterface {
     	this.info.cores = cores;
     	if(workers.size() < cores){
 			new Thread(new Runnable(){
+				@Override
 				public void run(){
 					while(workers.size() < info.cores){
 						Worker w = new Worker();
@@ -235,14 +236,19 @@ public class ConversionManagement implements ConversionManagementInterface {
     }
 
     public void addDataPortion(ConverterInterface.DataPortionInterface data){
-    	dataPortions.add(data);
-		try {
-    		synchronized(workerMonitor){
-    			workerMonitor.notify();     			
-    		}
-    	} catch (Exception e) {
-			e.printStackTrace();
-    	}
+    	new Thread(new Runnable() {
+			@Override
+			public void run() {
+				dataPortions.add(data);
+				try {
+					synchronized(workerMonitor){
+						workerMonitor.notify();     			
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
     }
     
 }
