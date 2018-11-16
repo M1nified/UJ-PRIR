@@ -186,18 +186,17 @@ public class ConversionManagement implements ConversionManagementInterface {
     
     public void setCores(int cores){
     	this.info.cores = cores;
-	if(workers.size() < cores){
-
-		new Thread(new Runnable(){
-			public void run(){
-				while(workers.size() < info.cores){
-					Worker w = new Worker();
-					w.start();
-					workers.add(w);
+    	if(workers.size() < cores){
+			new Thread(new Runnable(){
+				public void run(){
+					while(workers.size() < info.cores){
+						Worker w = new Worker();
+						w.start();
+						workers.add(w);
+					}
 				}
-			}
-		}).start();
-	}
+			}).start();
+		}
     }
 
     public void setConverter(ConverterInterface converter){
