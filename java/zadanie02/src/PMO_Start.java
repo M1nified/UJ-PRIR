@@ -99,7 +99,7 @@ public class PMO_Start {
 		PMO_SystemOutRedirect.startRedirectionToNull();
 
         if ( args.length < 1 ) {
-            PMO_SystemOutRedirect.println( "USAGE: java PMO_Start <A|B|C|D|E>");
+            PMO_SystemOutRedirect.println( "USAGE: java PMO_Start <A|B|C|D|E|F>");
             shutdown();
         } else if ( args[0].length() != 1 ) {
             PMO_SystemOutRedirect.println( "Jedno uruchomienie - jeden test" );
@@ -112,6 +112,7 @@ public class PMO_Start {
         tests.put( "C", new PMO_Test_C() );
         tests.put( "D", new PMO_Test_D() );
         tests.put( "E", new PMO_Test_E() );
+		tests.put( "F", new PMO_Test_F() );
 
         PMO_MyThreads.getRef();
         PMO_UncaughtException.getRef();

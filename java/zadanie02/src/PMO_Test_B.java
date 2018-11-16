@@ -1,5 +1,5 @@
 /**
- * Klasa testuje problem brak danych.
+ * Klasa testuje problem braku danych.
  * Oczekuje się, że wszystkie konwersje zostaną wykonane, ale
  * nie wszystkie wyniki dostarczone.
  */
