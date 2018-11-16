@@ -236,19 +236,14 @@ public class ConversionManagement implements ConversionManagementInterface {
     }
 
     public void addDataPortion(ConverterInterface.DataPortionInterface data){
-    	new Thread(new Runnable() {
-			@Override
-			public void run() {
-				dataPortions.add(data);
-				try {
-					synchronized(workerMonitor){
-						workerMonitor.notify();     			
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		}).start();
+	dataPortions.add(data);	
+	try {
+		synchronized(workerMonitor){
+			workerMonitor.notify();     			
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}	
     }
     
 }
