@@ -18,7 +18,6 @@ public class RestaurantManagement implements RestaurantManagementInterface {
 			while(( waiterInterface = availableWaiters.poll()) == null);
 			ordersInPrep.decrementAndGet();
 			orderServigWaiterMap.put(orderID, waiterInterface);
-//			waiterExecutorService.submit(new ServingHandler(waiterInterface, orderID, tableID));
 			waiterInterface.go(orderID, tableID);
 		}
 		
@@ -30,7 +29,6 @@ public class RestaurantManagement implements RestaurantManagementInterface {
 		public void newOrder(int orderID, int tableID) {
 			if(DEBUG) System.out.println("Order/newOrder " + orderID + " " + tableID);
 			orderTableMap.put(orderID, tableID);
-//			kitchenExecutorService.submit(new CookingHandler(orderID));
 			boolean done = false;
 			while(!done){
 				boolean runIt = false;
@@ -74,10 +72,6 @@ public class RestaurantManagement implements RestaurantManagementInterface {
 
 	private final AtomicInteger ordersInPrep = new AtomicInteger(0);
 	private final AtomicInteger waitersCount = new AtomicInteger(0);
-	
-	
-	public RestaurantManagement() {
-	}
 	
 	@Override
 	public void addWaiter(WaiterInterface waiter) {
