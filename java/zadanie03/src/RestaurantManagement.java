@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -51,7 +50,6 @@ public class RestaurantManagement implements RestaurantManagementInterface {
 			if(DEBUG) System.out.println("Order/orderComplete " + orderID + " " + tableID);
 			WaiterInterface waiterInterface = orderServigWaiterMap.remove(orderID);
 			if(!leavingWaiters.containsKey(waiterInterface.getID())){
-				waiters.remove(waiterInterface);
 				availableWaiters.add(waiterInterface);				
 			}
 		}
@@ -62,8 +60,6 @@ public class RestaurantManagement implements RestaurantManagementInterface {
 	private final Order order = new Order();
 	
 	private KitchenInterface kitchen = null;
-	
-	private final LinkedList<WaiterInterface> waiters = new LinkedList<>();
 
 	private final ConcurrentHashMap<Integer, Integer> orderTableMap = new ConcurrentHashMap<>();
 	private final ConcurrentHashMap<Integer, WaiterInterface> orderServigWaiterMap = new ConcurrentHashMap<>();
@@ -77,7 +73,6 @@ public class RestaurantManagement implements RestaurantManagementInterface {
 	public void addWaiter(WaiterInterface waiter) {
 		if(DEBUG) System.out.println("addWaiter " + waiter.getID());
 		waiter.registerOrder(this.order);
-		waiters.add(waiter);
 		availableWaiters.add(waiter);
 		waitersCount.incrementAndGet();
 	}
