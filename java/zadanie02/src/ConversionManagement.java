@@ -155,7 +155,7 @@ public class ConversionManagement implements ConversionManagementInterface {
 	    }
 	}
 	
-	final private Info info = new Info();
+	private final Info info = new Info();
     private Sender sender;
     private List<Collector> collectors = new ArrayList<Collector>(); 
 
@@ -164,12 +164,12 @@ public class ConversionManagement implements ConversionManagementInterface {
     private final Object collectorMonitor = new Object();
     private final Object senderMonitor = new Object();
     
-    final private List<Worker> workers = new ArrayList<Worker>();
-    final private ConcurrentSkipListSet<ConverterInterface.DataPortionInterface> dataPortions = new ConcurrentSkipListSet<ConverterInterface.DataPortionInterface>(new DataPortionComparator());
-    final private ConcurrentLinkedQueue<Result> results = new ConcurrentLinkedQueue<Result>();
+    private final List<Worker> workers = new ArrayList<Worker>();
+    private final ConcurrentSkipListSet<ConverterInterface.DataPortionInterface> dataPortions = new ConcurrentSkipListSet<ConverterInterface.DataPortionInterface>(new DataPortionComparator());
+    private final ConcurrentLinkedQueue<Result> results = new ConcurrentLinkedQueue<Result>();
 
-    final private Result[] leftRes = new Result[1000];
-    final private Result[] rightRes = new Result[1000];
+    private final Result[] leftRes = new Result[1000];
+    private final Result[] rightRes = new Result[1000];
     
     public ConversionManagement(){
     	this.sender = new Sender();
@@ -235,15 +235,31 @@ public class ConversionManagement implements ConversionManagementInterface {
         this.info.receiver = receiver;
     }
 
-    public void addDataPortion(ConverterInterface.DataPortionInterface data){
-	dataPortions.add(data);	
-	try {
-		synchronized(workerMonitor){
-			workerMonitor.notify();     			
-		}
-	} catch (Exception e) {
-		e.printStackTrace();
-	}	
+    public void addDataPortion(ConverterInterface.DataPortionInterface data) {
+    	if(!dataPortions.isEmpty() && data.id() <= dataPortions.first().id()) {
+    		dataPortions.add(data);	    		
+    		try {
+    			synchronized(workerMonitor){
+    				workerMonitor.notify();     			
+    			}
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}	
+    	} else {
+    		new Thread(new Runnable() {
+				@Override
+				public void run() {
+					dataPortions.add(data);	    		
+		    		try {
+		    			synchronized(workerMonitor){
+		    				workerMonitor.notify();     			
+		    			}
+		    		} catch (Exception e) {
+		    			e.printStackTrace();
+		    		}	
+				}
+			}).start();
+    	}
     }
     
 }
