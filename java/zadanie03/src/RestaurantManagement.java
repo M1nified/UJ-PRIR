@@ -1,8 +1,6 @@
 import java.util.LinkedList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -62,68 +60,10 @@ public class RestaurantManagement implements RestaurantManagementInterface {
 		
 	}
 	
-	private class CookingHandler implements Runnable{
-		
-		private int orderID;
-		
-		public CookingHandler(int orderID) {
-			this.orderID = orderID;
-		}
-		
-		@Override
-		public void run() {
-			if(DEBUG) System.out.println("CookingHandler/run " + orderID);
-			boolean done = false;
-			while(!done){
-				boolean runIt = false;
-				synchronized (ordersInPrep) {
-					if(ordersInPrep.get() < waitersCount.get() && ordersInPrep.get() < kitchen.getNumberOfParallelTasks()){
-						ordersInPrep.incrementAndGet();
-						runIt = true;
-					}
-				}
-				if(runIt){
-					if(DEBUG) System.out.println("CookingHandler/run cook " + orderID);
-					kitchen.prepare(orderID);					
-					done = true;
-				}
-				try {
-					cookingMonitor.wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					Thread.currentThread().interrupt();
-					e.printStackTrace();
-				}
-			}
-		}
-		
-	}
-	
-	private class ServingHandler implements Runnable{
-		
-		private WaiterInterface waiterInterface = null;
-		private int orderID;
-		private int tableID;
-		
-		public ServingHandler(WaiterInterface waiterInterface, int orderID, int tableID) {
-			this.waiterInterface = waiterInterface;
-			this.orderID = orderID;
-			this.tableID = tableID;
-		}
-
-		@Override
-		public void run() {
-			waiterInterface.go(orderID, tableID);
-		}
-				
-	}
-	
 	private final Receiver receiver = new Receiver();
 	private final Order order = new Order();
 	
 	private KitchenInterface kitchen = null;
-	private ExecutorService kitchenExecutorService = null;
-	private ExecutorService waiterExecutorService = null;
 	
 	private final LinkedList<WaiterInterface> waiters = new LinkedList<>();
 
@@ -135,11 +75,8 @@ public class RestaurantManagement implements RestaurantManagementInterface {
 	private final AtomicInteger ordersInPrep = new AtomicInteger(0);
 	private final AtomicInteger waitersCount = new AtomicInteger(0);
 	
-	private final Object cookingMonitor = new Object();
-	private final Object cookingCmpsync = new Object();
 	
 	public RestaurantManagement() {
-		waiterExecutorService = Executors.newCachedThreadPool();
 	}
 	
 	@Override
@@ -163,7 +100,6 @@ public class RestaurantManagement implements RestaurantManagementInterface {
 		if(DEBUG) System.out.println("setKitchen " + kitchen.getNumberOfParallelTasks());
 		this.kitchen = kitchen;
 		this.kitchen.registerReceiver(this.receiver);
-		this.kitchenExecutorService = Executors.newFixedThreadPool(this.kitchen.getNumberOfParallelTasks());
 	}
 
 }
