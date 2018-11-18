@@ -3,7 +3,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class RestaurantManagement implements RestaurantManagementInterface {
+class RestaurantManagement implements RestaurantManagementInterface {
 	
 	private final static boolean DEBUG = false;
 
