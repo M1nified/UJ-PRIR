@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ConcurrentSkipListSet;
 
-public class ConversionManagement implements ConversionManagementInterface {
+class ConversionManagement implements ConversionManagementInterface {
 
     private class Info {
         public int cores = 0;
