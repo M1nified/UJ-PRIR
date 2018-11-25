@@ -19,8 +19,6 @@ class TaskExecutor implements TaskExecutorInterface {
         private boolean keepCallbackRunning = true;
         private AtomicBoolean shallRun = new AtomicBoolean(true);
         
-        private int count = 0;
-        
         protected CallbackRMIExecutor(Runnable callbackCode, boolean keepCallbackRunning) throws RemoteException {
             super();
             this.callbackCode = callbackCode;
@@ -31,8 +29,7 @@ class TaskExecutor implements TaskExecutorInterface {
 
         @Override
         public void callback() throws RemoteException {
-            if(shallRun.getAndSet(keepCallbackRunning)) {
-                if(DEBUG) System.out.println(count++ + " " + keepCallbackRunning);                
+            if(shallRun.getAndSet(keepCallbackRunning)) {            
                 callbackCode.run();
             }
         }
