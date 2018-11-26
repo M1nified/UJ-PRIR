@@ -13,8 +13,6 @@ import org.omg.PortableServer.POA;
 import com.sun.corba.se.org.omg.CORBA.ORB;
 
 class OptimizationImpl extends optimizationPOA implements optimizationOperations {
-	
-	private final static boolean DEBUG = false;
 
 	class ServerItem {
 		private short ip;
@@ -54,24 +52,20 @@ class OptimizationImpl extends optimizationPOA implements optimizationOperations
 	}
 
 	class ServerItemIpComparator implements Comparator<ServerItem> {
-
 		@Override
 		public int compare(ServerItem o1, ServerItem o2) {
 			return o1.getIp() - o2.getIp();
 		}
-
 	}
 
 	static AtomicInteger idCount = new AtomicInteger(0);
 
-	private ConcurrentHashMap<Integer, ServerItem> servers = new ConcurrentHashMap<Integer, ServerItem>();
+	private ConcurrentHashMap<Integer, ServerItem> idServerMap = new ConcurrentHashMap<Integer, ServerItem>();
 	private ConcurrentHashMap<Short, ServerItem> ipServerMap = new ConcurrentHashMap<Short, ServerItem>();
-	private ConcurrentSkipListSet<ServerItem> serversList = new ConcurrentSkipListSet<ServerItem>(
-			new ServerItemIpComparator());
+	private ConcurrentSkipListSet<ServerItem> serverList = new ConcurrentSkipListSet<ServerItem>(new ServerItemIpComparator());
 
 	@Override
 	public void register(short ip, int timeout, IntHolder id) {
-		if(DEBUG) System.out.println("OptimizationImpl/register " + ip + " " + timeout + " " + id);
 		ServerItem serverItem = ipServerMap.get(ip);
 		if (serverItem != null) {
 			serverItem.setTimeout(timeout);
@@ -81,16 +75,14 @@ class OptimizationImpl extends optimizationPOA implements optimizationOperations
 			serverItem = new ServerItem(id.value, ip, timeout);
 			serverItem.hello();
 			ipServerMap.put(ip, serverItem);
-			servers.put(id.value, serverItem);
-			serversList.add(serverItem);
+			idServerMap.put(id.value, serverItem);
+			serverList.add(serverItem);
 		}
-
 	}
 
 	@Override
 	public void hello(int id) {
-		if(DEBUG) System.out.println("OptimizationImpl/hello " + id);
-		ServerItem serverItem = servers.get(id);
+		ServerItem serverItem = idServerMap.get(id);
 		if (serverItem != null) {
 			serverItem.hello();
 		}
@@ -98,11 +90,8 @@ class OptimizationImpl extends optimizationPOA implements optimizationOperations
 
 	@Override
 	public void best_range(rangeHolder r) {
-		if(DEBUG) System.out.println("OptimizationImpl/best_range " + r);
-
 		range bestRange = null, tmpRange = null;
-
-		Iterator<ServerItem> it = serversList.iterator();
+		Iterator<ServerItem> it = serverList.iterator();
 		while (it.hasNext()) {
 			ServerItem sItem = it.next();
 			if (tmpRange == null && sItem.isActive()) {
@@ -120,7 +109,6 @@ class OptimizationImpl extends optimizationPOA implements optimizationOperations
 				bestRange = tmpRange;
 			}
 		}
-
 		r.value = bestRange;
 	}
 }
