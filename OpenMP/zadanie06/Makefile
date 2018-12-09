@@ -5,8 +5,8 @@ PROC_COUNT = $(PC)
 .DEFAULT_GOAL := default
 
 run:
-	env OMP_NUM_THREADS=$(PROC_COUNT) ./a.out
+	env OMP_NUM_THREADS=$(PROC_COUNT) > /dev/null
+	./a.out
 
 default:
-	c++ -03 -fopenmp *.cpp
-
+	c++ -O3 -fopenmp LennardJonesPotential.cpp main.cpp MonteCarlo.cpp Particles.cpp PotentialEnergy.cpp
