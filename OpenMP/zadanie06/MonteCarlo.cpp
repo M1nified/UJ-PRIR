@@ -30,6 +30,7 @@ void MonteCarlo::calcInitialDr() {
 double MonteCarlo::calcMinOfMinDistance() {
 	double drMinSQ = 100000.0;
 	double tmp;
+	#pragma omp parallel for reduction( min:drMinSQ ) private( tmp )
 	for ( int i = 0; i < particles->getNumberOfParticles(); i++ ) {
 		tmp = particles->getDistanceSQToClosest(i);
 		if ( tmp < drMinSQ )
@@ -50,9 +51,11 @@ void MonteCarlo::setPotential( PotentialEnergy *energy ) {
 // to proszę zrównoleglić
 double MonteCarlo::calcContribution( int idx, double xx, double yy ) {
 	double sum = 0;
+	#pragma omp parallel for reduction( +:sum ) schedule( dynamic) private(idx, xx, yy)
 	for ( int i = 0; i < idx; i++ ) {
 		sum += energy->getPotentialEnergyDistanceSQ( particles->getDistanceBetweenSQ( i, xx, yy ));
 	}
+	#pragma omp parallel for reduction( +:sum ) schedule( dynamic) private(idx, xx, yy)
 	for ( int i = idx+1; i < particles->getNumberOfParticles(); i++ ) {
 		sum += energy->getPotentialEnergyDistanceSQ( particles->getDistanceBetweenSQ( i, xx, yy ));
 	}
@@ -62,6 +65,7 @@ double MonteCarlo::calcContribution( int idx, double xx, double yy ) {
 // to proszę zrównoleglić
 double MonteCarlo::calcTotalPotentialEnergy() {
 	double tmp = 0;
+	#pragma omp parallel for reduction( +:tmp )
 	for ( int i = 0; i < particles->getNumberOfParticles(); i++ )
 		tmp += calcContribution( i, particles->getX( i ), particles->getY( i ) );
 
@@ -121,12 +125,14 @@ void MonteCarlo::calcMC( int draws ) {
 // to proszę zrównoleglić
 long *MonteCarlo::getHistogram( int size ) {
 	long *result = new long[ size ];
+	#pragma omp parallel for
 	for ( int i = 0; i < size; i++ )
 		result[ i ] = 0;
 
 	int idx;
 	double scale = size / particles->getBoxSize();
 
+	#pragma omp parallel for schedule(dynamic) private(idx)
 	for ( int i = 0; i < particles->getNumberOfParticles(); i++ ) {
 		for ( int j = 0; j < i; j++  ) {
 			idx = (int)( particles->getDistanceBetween( i, j ) * scale );
