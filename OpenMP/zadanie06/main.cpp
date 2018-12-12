@@ -36,6 +36,7 @@ void calc( Particles *particles ) {
     double tStart = getTime();
 	double tStart0 = tStart;
     double Etot = mc->calcTotalPotentialEnergy();
+	cout << "double Etot = mc->calcTotalPotentialEnergy();" << endl;
 	tStart = showTime( tStart );
 
     cout << "Etot          = " << Etot << endl;
@@ -46,6 +47,7 @@ void calc( Particles *particles ) {
 		kBT += 0.1;
 	}
 
+	cout << "for mc->calcMC" << endl;
     tStart = showTime( tStart );
 // koniec pomiaru czasu 
 
@@ -53,9 +55,11 @@ void calc( Particles *particles ) {
 
     tStart = getTime();
 	Etot = mc->calcTotalPotentialEnergy();
+	cout << "Etot = mc->calcTotalPotentialEnergy();" << endl;
     tStart = showTime( tStart );
 
 	double avrMinDist = mc->calcMinOfMinDistance();
+	cout << "double avrMinDist = mc->calcMinOfMinDistance();" << endl;
     tStart = showTime( tStart );
 
 	long *histogram = mc->getHistogram( HISTOGRAM_SIZE );
@@ -63,6 +67,7 @@ void calc( Particles *particles ) {
 		if ( histogram[ i  ])
 			cout << i << " " << histogram[ i ] << endl;
 	}
+	cout << "long *histogram = mc->getHistogram( HISTOGRAM_SIZE );" << endl;
     tStart = showTime( tStart );
 
 	cout << "Etot get   = " << Eget << endl;
