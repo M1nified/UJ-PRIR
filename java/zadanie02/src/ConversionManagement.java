@@ -1,263 +1,282 @@
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 class ConversionManagement implements ConversionManagementInterface {
 
-    private class Info {
-        public int cores = 0;
-        public ConverterInterface converter;
-        public ConversionReceiverInterface receiver;
-    }
+	class ConversionJob implements Runnable {
 
-    private class Result {
-        public ConverterInterface.DataPortionInterface in;
-        public long out;
+		ConverterInterface.DataPortionInterface data;
 
-        public Result(ConverterInterface.DataPortionInterface in, long out) {
-            this.in = in;
-            this.out = out;
-        }
-    }
+		public ConverterInterface.DataPortionInterface getData() {
+			return data;
+		}
 
-    private class Worker extends Thread {
+		public ConversionJob(ConverterInterface.DataPortionInterface data) {
+			this.data = data;
+		}
 
-        @SuppressWarnings("unused")
-        private int id;
+		@Override
+		public void run() {
+			long result = converter.convert(data);
+			if (data.channel() == ConverterInterface.Channel.LEFT_CHANNEL) {
+				leftResults.put(data.id(), new ConversionResultKeeper(data, result));
+			} else {
+				rightResults.put(data.id(), new ConversionResultKeeper(data, result));
+			}
+			System.out.println(data.id() + " " + result);
+			synchronized (nothingToSendMonitor) {
+				nothingToSendMonitor.notify();
+			}
+			currentTasksCount.decrementAndGet();
+			synchronized (workersFullMonitor) {
+				workersFullMonitor.notify();
+			}
+			synchronized (managerIdlingMonitor) {
+				managerIdlingMonitor.notify();
+			}
+		}
 
-        public Worker() {
-        }
+	}
 
-        @SuppressWarnings("unused")
-        public Worker(int id) {
-            this.id = id;
-        }
+	class ConversionWorker implements Runnable {
 
-        public boolean killed() {
-            if (Thread.currentThread().isInterrupted()) {
-                return true;
-            }
-            if (info.cores < workers.size()) {
-                synchronized (lockWorkerKill) {
-                    if (info.cores < workers.size()) {
-                        Thread.currentThread().interrupt();
-                        workers.remove(this);
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			ConversionJob cj;
+			while (!Thread.currentThread().isInterrupted()) {
+				while ((cj = dataQueue.pollFirst()) != null) {
+					cj.run();
+				}
+				try {
+					synchronized (emptyDataQueueMonitor) {
+						emptyDataQueueMonitor.wait();
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			System.out.println("ConversionWorker SHUTDOWN");
+		}
 
-        @Override
-        public void run() {
-            ConverterInterface.DataPortionInterface data = null;
-            while (!this.killed()) {
-                while (!this.killed() && (data = dataPortions.pollFirst()) != null) {
-                    long converted = info.converter.convert(data);
-                    results.add(new Result(data, converted));
-                    synchronized (collectorMonitor) {
-                        collectorMonitor.notify();
-                    }
-                }
-                try {
-                    synchronized (workerMonitor) {
-                        workerMonitor.wait();
-                    }
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-//					e.printStackTrace();
-                }
-            }
-        }
-    }
+	}
 
-    private class Sender extends Thread {
+	class ConversionJobFactory implements ThreadFactory {
 
-        private int currentResultId = 1;
+		@Override
+		public Thread newThread(Runnable r) {
+			System.out.println("ConversionJobFactory/newThread:\n" + r);
+			return new Thread(r);
+		}
 
-        @Override
-        public void run() {
-            while (!Thread.currentThread().isInterrupted()) {
-                while (trySend())
-                    ;
-                try {
-                    synchronized (senderMonitor) {
-                        senderMonitor.wait();
-                    }
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    Thread.currentThread().interrupt();
-                    e.printStackTrace();
-                }
-            }
-        }
+	}
 
-        private boolean trySend() {
-            if (leftRes[currentResultId] != null && rightRes[currentResultId] != null) {
-                Result left = leftRes[currentResultId], right = rightRes[currentResultId];
-                ConversionManagementInterface.ConversionResult result = new ConversionManagementInterface.ConversionResult(
-                        left.in, right.in, left.out, right.out);
-                info.receiver.result(result);
-                currentResultId++;
-                return true;
-            }
-            return false;
-        }
+	class ConversionResultKeeper {
 
-    }
+		public ConverterInterface.DataPortionInterface input;
+		public long result;
 
-    private class Collector extends Thread {
-        @Override
-        public void run() {
-            while (!Thread.currentThread().isInterrupted()) {
-                Result result = null;
-                while ((result = results.poll()) != null) {
-                    int id = result.in.id();
-                    if (result.in.channel() == ConverterInterface.Channel.LEFT_CHANNEL) {
-                        leftRes[id] = result;
-                    } else {
-                        rightRes[id] = result;
-                    }
-                    synchronized (senderMonitor) {
-                        senderMonitor.notify();
-                    }
-                }
-                try {
-                    synchronized (collectorMonitor) {
-                        collectorMonitor.wait();
-                    }
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    Thread.currentThread().interrupt();
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+		public ConversionResultKeeper(ConverterInterface.DataPortionInterface input, long result) {
+			this.input = input;
+			this.result = result;
+		}
 
-    private class DataPortionComparator implements Comparator<ConverterInterface.DataPortionInterface> {
-        @Override
-        public int compare(ConverterInterface.DataPortionInterface first,
-                ConverterInterface.DataPortionInterface second) {
-            int diff = first.id() - second.id();
-            if (diff == 0) {
-                return first.channel() == ConverterInterface.Channel.LEFT_CHANNEL ? -1 : 1;
-            }
-            return diff;
-        }
-    }
+	}
 
-    private final Info info = new Info();
-    private Sender sender;
-    private List<Collector> collectors = new ArrayList<Collector>();
+	class DataPortionPriorityComparator implements Comparator<ConversionJob> {
 
-    private final Object workerMonitor = new Object();
-    private final Object lockWorkerKill = new Object();
-    private final Object collectorMonitor = new Object();
-    private final Object senderMonitor = new Object();
+		@Override
+		public int compare(ConversionJob o1, ConversionJob o2) {
+			if (o1.getData().id() == o2.getData().id()) {
+				return 1;
+			}
+			return o1.getData().id() - o2.getData().id();
+		}
 
-    private final List<Worker> workers = new ArrayList<Worker>();
-    private final ConcurrentSkipListSet<ConverterInterface.DataPortionInterface> dataPortions = new ConcurrentSkipListSet<ConverterInterface.DataPortionInterface>(
-            new DataPortionComparator());
-    private final ConcurrentLinkedQueue<Result> results = new ConcurrentLinkedQueue<Result>();
+	}
 
-    private final Result[] leftRes = new Result[1000];
-    private final Result[] rightRes = new Result[1000];
+	class Sender extends Thread {
 
-    public ConversionManagement() {
-        this.sender = new Sender();
-        this.sender.start();
-        for (int i = 0; i < 2; i++) {
-            Collector collector = new Collector();
-            this.collectors.add(collector);
-            collector.start();
-        }
-    }
+		int currentResultId = 1;
 
-    @Override
-    public void finalize() throws Throwable {
-        try {
+		@Override
+		public void run() {
+			while (!Thread.currentThread().isInterrupted()) {
+				while (this.send())
+					;
+				try {
+					synchronized (nothingToSendMonitor) {
+						nothingToSendMonitor.wait();
+					}
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+					e.printStackTrace();
+				}
+			}
+		}
 
-            while (dataPortions.size() > 0)
-                ;
-            for (Worker worker : this.workers) {
-                worker.interrupt();
-            }
-            for (Worker worker : this.workers) {
-                worker.join();
-            }
+		private boolean send() {
+			ConversionResultKeeper left;
+			ConversionResultKeeper right;
+			if ((left = leftResults.get(currentResultId)) != null
+					&& (right = rightResults.get(currentResultId)) != null) {
+				ConversionResult result = new ConversionResult(left.input, right.input, left.result, right.result);
+				conversionReceiver.result(result);
+				System.out.println("SENT " + left.input.id());
+				currentResultId++;
+				return true;
+			}
+			return false;
+		}
 
-            while (results.size() > 0)
-                ;
-            for (Collector collector : collectors) {
-                collector.interrupt();
-            }
-            for (Collector collector : collectors) {
-                collector.join();
-            }
+	}
 
-            this.sender.interrupt();
-            this.sender.join();
+	class Assigner extends Thread {
+		@Override
+		public void run() {
+			while (!Thread.currentThread().isInterrupted()) {
+				while (submit())
+					;
+				try {
+					synchronized (workersFullMonitor) {
+						workersFullMonitor.wait();
+					}
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-//    		super.finalize();
-        }
-    }
+		}
 
-    public void setCores(int cores) {
-        this.info.cores = cores;
-        if (workers.size() < cores) {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (workers.size() < info.cores) {
-                        Worker w = new Worker();
-                        w.start();
-                        workers.add(w);
-                    }
-                }
-            }).start();
-        }
-    }
+		boolean submit() {
+			ConversionJob cj;
+			if (currentTasksCount.get() < cores && (cj = dataQueue.pollFirst()) != null) {
+				currentTasksCount.getAndIncrement();
+				executor.submit(cj);
+				return true;
+			}
+			return false;
+		}
+	}
+	
+	class Manager extends Thread{
 
-    public void setConverter(ConverterInterface converter) {
-        this.info.converter = converter;
-    }
+		int currentResultId = 1;
+		
+		@Override
+		public void run() {
+			while (!Thread.currentThread().isInterrupted()) {
+				while (submit() || send())
+					;
+				try {
+					synchronized (managerIdlingMonitor) {
+						managerIdlingMonitor.wait();
+					}
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+					e.printStackTrace();
+				}
+			}
+		}
 
-    public void setConversionReceiver(ConversionReceiverInterface receiver) {
-        this.info.receiver = receiver;
-    }
+		boolean submit() {
+			ConversionJob cj;
+			if (currentTasksCount.get() < cores && (cj = dataQueue.pollFirst()) != null) {
+				currentTasksCount.getAndIncrement();
+				executor.submit(cj);
+				return true;
+			}
+			return false;
+		}
 
-    public void addDataPortion(ConverterInterface.DataPortionInterface data) {
-        if (!dataPortions.isEmpty() && data.id() <= dataPortions.first().id()) {
-            dataPortions.add(data);
-            try {
-                synchronized (workerMonitor) {
-                    workerMonitor.notify();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    dataPortions.add(data);
-                    try {
-                        synchronized (workerMonitor) {
-                            workerMonitor.notify();
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-        }
-    }
+		private boolean send() {
+			ConversionResultKeeper left;
+			ConversionResultKeeper right;
+			if ((left = leftResults.get(currentResultId)) != null
+					&& (right = rightResults.get(currentResultId)) != null) {
+				ConversionResult result = new ConversionResult(left.input, right.input, left.result, right.result);
+				conversionReceiver.result(result);
+				System.out.println("SENT " + left.input.id());
+				currentResultId++;
+				return true;
+			}
+			return false;
+		}
+		
+	}
 
+	Sender sender = new Sender();
+	Assigner assigner = new Assigner();
+	Manager manager = new Manager();
+
+	AtomicInteger currentTasksCount = new AtomicInteger(0);
+
+	ExecutorService executor = Executors.newFixedThreadPool(1);
+	ConverterInterface converter = null;
+	ConversionReceiverInterface conversionReceiver = null;
+
+	ConcurrentSkipListSet<ConversionJob> dataQueue = new ConcurrentSkipListSet<ConversionJob>(
+			new DataPortionPriorityComparator());
+	ConversionJobFactory conversionJobFactory = new ConversionJobFactory();
+
+	int cores = 1;
+
+	ConcurrentHashMap<Integer, ConversionResultKeeper> leftResults = new ConcurrentHashMap<Integer, ConversionResultKeeper>();
+	ConcurrentHashMap<Integer, ConversionResultKeeper> rightResults = new ConcurrentHashMap<Integer, ConversionResultKeeper>();
+
+	private final static Object emptyDataQueueMonitor = new Object();
+	private final static Object nothingToSendMonitor = new Object();
+	private final static Object workersFullMonitor = new Object();
+	private final static Object managerIdlingMonitor = new Object();
+
+	public ConversionManagement() {
+//		sender.start();
+//		assigner.start();
+		manager.start();
+	}
+
+	@Override
+	public void setCores(int cores) {
+		this.cores = cores;
+		System.out.println("setCores: " + cores);
+		executor.shutdownNow();
+		executor = Executors.newFixedThreadPool(cores, conversionJobFactory);
+//		for (int i = 0; i < cores; i++)
+//			executor.submit(new ConversionWorker());
+	}
+
+	@Override
+	public void setConverter(ConverterInterface converter) {
+		// TODO Auto-generated method stub
+		this.converter = converter;
+	}
+
+	@Override
+	public void setConversionReceiver(ConversionReceiverInterface receiver) {
+		// TODO Auto-generated method stub
+		this.conversionReceiver = receiver;
+	}
+
+	@Override
+	public void addDataPortion(ConverterInterface.DataPortionInterface data) {
+		this.dataQueue.add(new ConversionJob(data));
+		synchronized (emptyDataQueueMonitor) {
+			emptyDataQueueMonitor.notify();
+		}
+		synchronized (workersFullMonitor) {
+			workersFullMonitor.notify();
+		}
+		synchronized (managerIdlingMonitor) {
+			managerIdlingMonitor.notify();
+		}
+	}
 }
